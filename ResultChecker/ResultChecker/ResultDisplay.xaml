@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ResultChecker.ResultDisplay"
+             Title="{Binding CandidateName}">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Margin="20, 10, 20, 10">
+
+                <Image Source="waec" Margin="5" WidthRequest="40" HeightRequest="40"/>
+                <Label Text="WEST AFRICAN EXAMINATIONS COUNCIL" HorizontalOptions="Center" Margin="0, 0, 5, 0" FontSize="17"/>
+                <Label Text="......Excellence" HorizontalOptions="Center" Margin="0, 0, 5, 0" FontAttributes="Italic" FontSize="12"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" Grid.Column="0" Text="Name:" FontSize="14"/>
+                    <Label  Grid.Row="0" Grid.Column="1" Text="{Binding CandidateName}" FontSize="14"/>
+
+                    <Label Grid.Row="1" Grid.Column="0" Text="Sex:" FontSize="14"/>
+                    <Label  Grid.Row="1" Grid.Column="1" Text="{Binding CandidateGender}" FontSize="14"/>
+
+                    <Label Grid.Row="2" Grid.Column="0" Text="Examination:" FontSize="14"/>
+                    <Label  Grid.Row="2" Grid.Column="1" Text="{Binding ExamDiet}" FontSize="14"/>
+
+                    <Label Grid.Row="3" Grid.Column="0" Text="Examination No.:" FontSize="14"/>
+                    <Label  Grid.Row="3" Grid.Column="1" Text="{Binding ExaminationNumber}" FontSize="14"/>
+
+                    <Label Grid.Row="4" Grid.Column="0" Text="Centre:" FontSize="14"/>
+                    <Label  Grid.Row="4" Grid.Column="1" Text="{Binding Centre}" FontSize="14"/>
+
+
+
+                </Grid>
+
+
+                <ScrollView>
+                    <Grid x:Name="ResultGrid" Margin="10, 10, 0, 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+                </ScrollView>
+
+                <Grid Margin="30, 5, 30, 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button x:Name="CloseButton" Clicked="CloseButtonClicked" Grid.Column="1" Text="Cancel" />
+                    <!--<Button x:Name="PrintButton" Clicked="PrintButtonClicked" Grid.Column="0" Text="Print"/>-->
+
+                </Grid>
+            
+            
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
