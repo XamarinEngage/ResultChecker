@@ -30,6 +30,8 @@
 
             <Button x:Name="SubmitButton" Text="Submit" Clicked="SubmitButtonClicked"/>
 
+            <ActivityIndicator x:Name="Loader" IsRunning="False" IsVisible="true"/>
+
         </StackLayout>
 
     </ContentPage.Content>
