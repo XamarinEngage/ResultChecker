@@ -66,9 +66,9 @@ namespace ResultChecker
                         page.BindingContext = candidate;
 
                         await Navigation.PushAsync(page);
-                        ExamTypePicker.SelectedItem = null;
-                        ExamYearPicker.SelectedItem = null;
-                        ExamNoEntry.Text = null;
+                        //ExamTypePicker.SelectedItem = null;
+                        //ExamYearPicker.SelectedItem = null;
+                        //ExamNoEntry.Text = null;
                         Loader.IsRunning = false;
                         SubmitButton.IsEnabled = true;
                     }
