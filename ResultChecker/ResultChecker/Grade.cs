@@ -40,7 +40,6 @@ namespace ResultChecker
             { "113" , "Geography"}
         };
 
-        //public Subject Subject { get; set; }
 
         private string score;
         private string subject;

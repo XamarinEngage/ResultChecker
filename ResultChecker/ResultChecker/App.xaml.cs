@@ -11,21 +11,7 @@ namespace ResultChecker
 	public partial class App : Application
 	{
 
-        //private static CandidateRepository candidateRepository = null;
-
-        //public static CandidateRepository CandidateRepository
-        //{
-        //    get
-        //    {
-        //        if (candidateRepository == null)
-        //        {
-        //            string dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Candidates.db");
-        //            candidateRepository = new CandidateRepository(dbPath);
-        //        }
-        //        return candidateRepository;
-        //    }
-
-        //}
+        
 
         public static Service Service = new Service();
 

@@ -12,7 +12,6 @@ namespace ResultChecker
         private List<String> ExamYear = new List<string>();
         private List<String> ExamType = new List<string>();
 
-        //private CandidateRepository database = App.CandidateRepository;
         public MainPage()
 		{
 			InitializeComponent();
@@ -42,7 +41,7 @@ namespace ResultChecker
 
         private async void SubmitButtonClicked(object sender, EventArgs e)
         {
-
+            SubmitButton.IsEnabled = false;
             Loader.IsRunning = true;
             
             var examYear = ExamYearPicker.SelectedItem as string;
@@ -51,11 +50,9 @@ namespace ResultChecker
             var examNo = ExamNoEntry.Text;
             if (!(String.IsNullOrEmpty(examYear) || string.IsNullOrEmpty(examType) || string.IsNullOrEmpty(examNo))) {
 
-                //List<Candidate> cand = database.GetResult(examType, Int32.Parse(examYear), examNo);
                 Candidate candidate = await App.Service.GetResult(examYear, examType, examNo);
                 if (candidate != null)
                 {
-                    //var cands = cand[0];
 
                     var page = new ResultDisplay();
                     page.BindingContext = candidate;
@@ -65,10 +62,12 @@ namespace ResultChecker
                     ExamYearPicker.SelectedItem = null;
                     ExamNoEntry.Text = null;
                     Loader.IsRunning = false;
+                    SubmitButton.IsEnabled = true;
                 }
                 else
                 {
                     Loader.IsRunning = false;
+                    SubmitButton.IsEnabled = true;
                     await  DisplayAlert("Info", $"Result not found for candidate: {examNo} in {examType} {examYear}", "Ok");
                 }
             }

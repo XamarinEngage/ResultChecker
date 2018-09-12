@@ -15,8 +15,7 @@ namespace ResultChecker
 		public ResultDisplay ()
 		{
 			InitializeComponent ();
-            //Candidate cand = BindingContext as Candidate;s
-            //PopulateResults(cand);
+            
 		}
 
         protected override void OnAppearing()

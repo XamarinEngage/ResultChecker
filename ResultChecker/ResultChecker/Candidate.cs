@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using SQLite;
 
 namespace ResultChecker
 {
     public class Candidate
     {
-        [PrimaryKey, AutoIncrement]
+        
         public int Id { get; set; }
 
         public int ExaminationYear { get; set; }
@@ -33,12 +32,11 @@ namespace ResultChecker
         }
 
 
-        [Ignore]
+        
         public List<Grade> Grades
         {
             get{
 
-                //this.result = results;
                 List<Grade> grades = new List<Grade>();
                 int i = 0;
                 try
@@ -46,11 +44,9 @@ namespace ResultChecker
                     while (i < Result.Length)
                     {
                         var subject = Result.Substring(i, 3);
-                        //subjects.Add(result.Substring(i, 3));
 
                         i += 3;
 
-                        //grade.Add(result.Substring(i, 1));
                         var score = Result.Substring(i, 1);
                         i++;
 

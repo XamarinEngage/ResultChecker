@@ -17,12 +17,7 @@
 
             <Label Text="Examination Year:" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Medium"/>
             <Picker x:Name="ExamYearPicker" Title="Select exam year" Margin="0, 0, 0, 10">
-                <!--<Picker.ItemsSource>
-                    <x:Array>
-                        <x:String>May/June</x:String>
-                        <x:String>Nov/Dec</x:String>
-                    </x:Array>
-                </Picker.ItemsSource>-->
+                
             </Picker>
 
             <Label Text="Examination Number:" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Medium" />
