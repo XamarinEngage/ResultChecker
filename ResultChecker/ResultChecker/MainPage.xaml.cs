@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Plugin.Connectivity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -42,38 +43,54 @@ namespace ResultChecker
         private async void SubmitButtonClicked(object sender, EventArgs e)
         {
             SubmitButton.IsEnabled = false;
-            Loader.IsRunning = true;
+            
             
             var examYear = ExamYearPicker.SelectedItem as string;
             var examType = ExamTypePicker.SelectedItem as string;
 
             var examNo = ExamNoEntry.Text;
+
+            //if all fields are filled
             if (!(String.IsNullOrEmpty(examYear) || string.IsNullOrEmpty(examType) || string.IsNullOrEmpty(examNo))) {
-
-                Candidate candidate = await App.Service.GetResult(examYear, examType, examNo);
-                if (candidate != null)
+                Loader.IsRunning = true;
+                //if internet connection is available 
+                if (CrossConnectivity.Current.IsConnected)
                 {
+                    Candidate candidate = await App.Service.GetResult(examYear, examType, examNo);
 
-                    var page = new ResultDisplay();
-                    page.BindingContext = candidate;
+                    //if candidate result is available
+                    if (candidate != null)
+                    {
 
-                    await Navigation.PushAsync(page);
-                    ExamTypePicker.SelectedItem = null;
-                    ExamYearPicker.SelectedItem = null;
-                    ExamNoEntry.Text = null;
-                    Loader.IsRunning = false;
-                    SubmitButton.IsEnabled = true;
+                        var page = new ResultDisplay();
+                        page.BindingContext = candidate;
+
+                        await Navigation.PushAsync(page);
+                        ExamTypePicker.SelectedItem = null;
+                        ExamYearPicker.SelectedItem = null;
+                        ExamNoEntry.Text = null;
+                        Loader.IsRunning = false;
+                        SubmitButton.IsEnabled = true;
+                    }
+                    else
+                    {
+                        Loader.IsRunning = false;
+                        SubmitButton.IsEnabled = true;
+                        await DisplayAlert("Info", $"Result not found for candidate: {examNo} in {examType} {examYear}", "Ok");
+                    }
                 }
                 else
                 {
                     Loader.IsRunning = false;
                     SubmitButton.IsEnabled = true;
-                    await  DisplayAlert("Info", $"Result not found for candidate: {examNo} in {examType} {examYear}", "Ok");
+                    await DisplayAlert("Error", "Unable to connect to server.\n Check your device's internet connectivity", "Ok");
                 }
             }
             else
             {
-                await DisplayAlert("Error", $"Please complete all fields", "Ok");
+                await DisplayAlert("Error", "Please complete all fields", "Ok");
+                Loader.IsRunning = false;
+                SubmitButton.IsEnabled = true;
             }
 
         }
